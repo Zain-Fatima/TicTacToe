@@ -23,7 +23,6 @@ function initializeGame(){
     statusText.textContent = `${currentPlayer}'s turn`;
     running = true;
 }
-
 function cellClicked(){
     const cellIndex = this.getAttribute("cellIndex");
 
@@ -34,19 +33,14 @@ function cellClicked(){
     updateCell(this, cellIndex);
     checkWinner();
 }
-
 function updateCell(cell, index){
     options[index] = currentPlayer;
     cell.textContent = currentPlayer;
-    cell.classList.add(currentPlayer.toLowerCase());
-    changePlayer();
 }
-
 function changePlayer(){
     currentPlayer = (currentPlayer == "X") ? "O" : "X";
     statusText.textContent = `${currentPlayer}'s turn`;
 }
-
 function checkWinner(){
     let roundWon = false;
 
@@ -61,7 +55,6 @@ function checkWinner(){
         }
         if(cellA == cellB && cellB == cellC){
             roundWon = true;
-            highlightWinningCells(condition);
             break;
         }
     }
@@ -74,21 +67,14 @@ function checkWinner(){
         statusText.textContent = `Draw!`;
         running = false;
     }
+    else{
+        changePlayer();
+    }
 }
-
-function highlightWinningCells(condition){
-    condition.forEach(index => {
-        cells[index].classList.add("winning-cell");
-    });
-}
-
 function restartGame(){
     currentPlayer = "X";
     options = ["", "", "", "", "", "", "", "", ""];
     statusText.textContent = `${currentPlayer}'s turn`;
-    cells.forEach(cell => {
-        cell.textContent = "";
-        cell.classList.remove("X", "O", "winning-cell");
-    });
+    cells.forEach(cell => cell.textContent = "");
     running = true;
 }
