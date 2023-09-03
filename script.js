@@ -55,6 +55,7 @@ function checkWinner(){
         }
         if(cellA == cellB && cellB == cellC){
             roundWon = true;
+	    highlightWinningCells(condition);
             break;
         }
     }
@@ -70,6 +71,12 @@ function checkWinner(){
     else{
         changePlayer();
     }
+}
+
+function highlightWinningCells(condition){
+    condition.forEach(index => {
+        cells[index].classList.add("winning-cell");
+    });
 }
 function restartGame(){
     currentPlayer = "X";
