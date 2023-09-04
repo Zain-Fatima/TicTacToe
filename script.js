@@ -82,6 +82,9 @@ function restartGame(){
     currentPlayer = "X";
     options = ["", "", "", "", "", "", "", "", ""];
     statusText.textContent = `${currentPlayer}'s turn`;
-    cells.forEach(cell => cell.textContent = "");
+    cells.forEach(cell => {
+        cell.textContent = "";
+        cell.classList.remove("winning-cell"); // Remove the winning-cell class
+    });
     running = true;
 }
